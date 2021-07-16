@@ -28,7 +28,7 @@ Pod::Spec.new do |spec|
                       There is my description just here!!!
                    DESC
 
-  spec.homepage     = "http://EXAMPLE/HolyOnboarding"
+  spec.homepage     = "https://github.com/anz77/HolyOnboarding"
   # spec.screenshots  = "www.example.com/screenshots_1.gif", "www.example.com/screenshots_2.gif"
 
 
@@ -53,7 +53,6 @@ Pod::Spec.new do |spec|
   #  profile URL.
   #
 
-  spec.homepage           = "http://anz77/MyOnboarding.git"
   spec.author             = { "ANDRII ZUIOK" => "a.zuiok77@gmail.com" }
   # Or just: spec.author    = "ANDRII ZUIOK"
   # spec.authors            = { "ANDRII ZUIOK" => "a.zuiok77@gmail.com" }
@@ -67,6 +66,7 @@ Pod::Spec.new do |spec|
 
   #spec.platform     = :ios
   spec.platform     = :ios, "13.0"
+  spec.swift_version = "5.0"
 
   #  When using multiple platforms
   # spec.ios.deployment_target = "5.0"
@@ -81,7 +81,7 @@ Pod::Spec.new do |spec|
   #  Supports git, hg, bzr, svn and HTTP.
   #
 
-  spec.source       = { :git => "http://anz77/MyOnboarding.git", :tag => "#{spec.version}" }
+  spec.source       = { :git => "http://anz77/HolyOnboarding.git", :tag => "#{spec.version}" }
 
 
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
@@ -92,7 +92,7 @@ Pod::Spec.new do |spec|
   #  Not including the public_header_files will make all headers public.
   #
 
-  spec.source_files  = "Classes", "Classes/**/*.{h,m,swift}"
+  spec.source_files  = "HolyOnboarding", "HolyOnboarding/**/*.{h,m,swift}"
   # spec.exclude_files = "Classes/Exclude"
 
   # spec.public_header_files = "Classes/**/*.h"
@@ -108,6 +108,8 @@ Pod::Spec.new do |spec|
 
   # spec.resource  = "icon.png"
   # spec.resources = "Resources/*.png"
+  
+  spec.resources = "HolyOnboarding/**/*.{png,jpeg,jpg,storyboard,xib,xcassets}"
 
   # spec.preserve_paths = "FilesToSave", "MoreFilesToSave"
 
@@ -118,7 +120,7 @@ Pod::Spec.new do |spec|
   #  the lib prefix of their name.
   #
 
-  # spec.framework  = "SomeFramework"
+  spec.framework  = "UIKit"
   # spec.frameworks = "SomeFramework", "AnotherFramework"
 
   # spec.library   = "iconv"

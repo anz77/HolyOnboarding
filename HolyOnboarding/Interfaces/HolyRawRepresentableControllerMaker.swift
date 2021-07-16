@@ -7,13 +7,12 @@
 
 import UIKit
 
-protocol HolyRawRepresentableControllerMaker: RawRepresentable {
-    func getController() -> HolyBaseOnboardingController
+public protocol HolyRawRepresentableControllerMaker: RawRepresentable {
+    func getController(coordinator: HolyOnboardingContainerProtocol?) -> HolyOnboardingItem
     static var defaultFlow: [Self] {get}
-    //static func makeFlowFromSequence(_ sequence: [Self.RawValue]) -> [Self]
 }
 
-extension HolyRawRepresentableControllerMaker {
+public extension HolyRawRepresentableControllerMaker {
     static func makeFlowFromSequence(_ sequence: [Self.RawValue]) -> [Self] {
         return sequence.compactMap {Self.init(rawValue: $0)}
     }

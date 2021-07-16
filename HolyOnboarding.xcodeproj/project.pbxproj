@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B20EDD8226A1A08400343605 /* ExampleIAPController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20EDD8126A1A08400343605 /* ExampleIAPController.swift */; };
 		B289EC1B269DF0F600650B7A /* HolyOnboarding.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B289EC11269DF0F600650B7A /* HolyOnboarding.framework */; };
 		B289EC20269DF0F600650B7A /* HolyOnboardingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B289EC1F269DF0F600650B7A /* HolyOnboardingTests.swift */; };
 		B289EC22269DF0F600650B7A /* HolyOnboarding.h in Headers */ = {isa = PBXBuildFile; fileRef = B289EC14269DF0F600650B7A /* HolyOnboarding.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -16,11 +17,21 @@
 		B289EC39269DF25C00650B7A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B289EC37269DF25C00650B7A /* Main.storyboard */; };
 		B289EC3B269DF25D00650B7A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B289EC3A269DF25D00650B7A /* Assets.xcassets */; };
 		B289EC3E269DF25D00650B7A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B289EC3C269DF25D00650B7A /* LaunchScreen.storyboard */; };
-		B2ECF9A8269DF51C0029138D /* HolyOnboarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2ECF9A7269DF51C0029138D /* HolyOnboarding.swift */; };
-		B2ECF9AA269DF5410029138D /* HolyBaseOnboardingControllerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2ECF9A9269DF5410029138D /* HolyBaseOnboardingControllerProtocol.swift */; };
-		B2ECF9AC269DF54F0029138D /* HolyContainerControllerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2ECF9AB269DF54F0029138D /* HolyContainerControllerProtocol.swift */; };
-		B2ECF9AE269DF5580029138D /* HolyDefaultContainerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2ECF9AD269DF5580029138D /* HolyDefaultContainerController.swift */; };
+		B2B911C0269ED7B600A6D9E0 /* HolyOnboarding.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B289EC11269DF0F600650B7A /* HolyOnboarding.framework */; };
+		B2B911C1269ED7B600A6D9E0 /* HolyOnboarding.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B289EC11269DF0F600650B7A /* HolyOnboarding.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		B2B911C6269F10FF00A6D9E0 /* ThirdExampleOnboardingScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B911C5269F10FF00A6D9E0 /* ThirdExampleOnboardingScreen.swift */; };
+		B2CE61A8269EBA5F00E04C00 /* ExampleOnboardingScreens.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2CE61A7269EBA5F00E04C00 /* ExampleOnboardingScreens.swift */; };
+		B2CE61AA269EC25100E04C00 /* FirstExampleOnboardigScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2CE61A9269EC25100E04C00 /* FirstExampleOnboardigScreen.swift */; };
+		B2CE61AE269EC37100E04C00 /* SecondExampleOnboardingScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2CE61AD269EC37100E04C00 /* SecondExampleOnboardingScreen.swift */; };
+		B2EC9B89269E04E100231B2C /* HolyOnboarding.podspec in Resources */ = {isa = PBXBuildFile; fileRef = B2EC9B88269E04E100231B2C /* HolyOnboarding.podspec */; };
+		B2ECF9AA269DF5410029138D /* HolyOnboardingItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2ECF9A9269DF5410029138D /* HolyOnboardingItem.swift */; };
+		B2ECF9AC269DF54F0029138D /* HolyOnboardingFlowProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2ECF9AB269DF54F0029138D /* HolyOnboardingFlowProtocol.swift */; };
+		B2ECF9AE269DF5580029138D /* HolyCustomAnimatedContainerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2ECF9AD269DF5580029138D /* HolyCustomAnimatedContainerController.swift */; };
 		B2ECF9B0269DF55F0029138D /* HolyRawRepresentableControllerMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2ECF9AF269DF55F0029138D /* HolyRawRepresentableControllerMaker.swift */; };
+		B2EFA99226A03FA1007AC22A /* PrivateAnimationTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2EFA99126A03FA1007AC22A /* PrivateAnimationTransition.swift */; };
+		B2EFA99426A03FDF007AC22A /* PrivateTransitionContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2EFA99326A03FDF007AC22A /* PrivateTransitionContext.swift */; };
+		B2EFA99726A06FEA007AC22A /* HolyOnboardingCustomStackProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2EFA99626A06FEA007AC22A /* HolyOnboardingCustomStackProtocol.swift */; };
+		B2EFA99926A07215007AC22A /* HolyDefaultNavigationStackController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2EFA99826A07215007AC22A /* HolyDefaultNavigationStackController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -31,9 +42,31 @@
 			remoteGlobalIDString = B289EC10269DF0F600650B7A;
 			remoteInfo = HolyOnboarding;
 		};
+		B2B911C2269ED7B600A6D9E0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B289EC08269DF0F600650B7A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B289EC10269DF0F600650B7A;
+			remoteInfo = HolyOnboarding;
+		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		B2B911C4269ED7B600A6D9E0 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				B2B911C1269ED7B600A6D9E0 /* HolyOnboarding.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		B20EDD8126A1A08400343605 /* ExampleIAPController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleIAPController.swift; sourceTree = "<group>"; };
 		B289EC11269DF0F600650B7A /* HolyOnboarding.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = HolyOnboarding.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B289EC14269DF0F600650B7A /* HolyOnboarding.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HolyOnboarding.h; sourceTree = "<group>"; };
 		B289EC15269DF0F600650B7A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -48,11 +81,19 @@
 		B289EC3A269DF25D00650B7A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B289EC3D269DF25D00650B7A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B289EC3F269DF25D00650B7A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		B2ECF9A7269DF51C0029138D /* HolyOnboarding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HolyOnboarding.swift; sourceTree = "<group>"; };
-		B2ECF9A9269DF5410029138D /* HolyBaseOnboardingControllerProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HolyBaseOnboardingControllerProtocol.swift; sourceTree = "<group>"; };
-		B2ECF9AB269DF54F0029138D /* HolyContainerControllerProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HolyContainerControllerProtocol.swift; sourceTree = "<group>"; };
-		B2ECF9AD269DF5580029138D /* HolyDefaultContainerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HolyDefaultContainerController.swift; sourceTree = "<group>"; };
+		B2B911C5269F10FF00A6D9E0 /* ThirdExampleOnboardingScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdExampleOnboardingScreen.swift; sourceTree = "<group>"; };
+		B2CE61A7269EBA5F00E04C00 /* ExampleOnboardingScreens.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleOnboardingScreens.swift; sourceTree = "<group>"; };
+		B2CE61A9269EC25100E04C00 /* FirstExampleOnboardigScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstExampleOnboardigScreen.swift; sourceTree = "<group>"; };
+		B2CE61AD269EC37100E04C00 /* SecondExampleOnboardingScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondExampleOnboardingScreen.swift; sourceTree = "<group>"; };
+		B2EC9B88269E04E100231B2C /* HolyOnboarding.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = HolyOnboarding.podspec; sourceTree = "<group>"; };
+		B2ECF9A9269DF5410029138D /* HolyOnboardingItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HolyOnboardingItem.swift; sourceTree = "<group>"; };
+		B2ECF9AB269DF54F0029138D /* HolyOnboardingFlowProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HolyOnboardingFlowProtocol.swift; sourceTree = "<group>"; };
+		B2ECF9AD269DF5580029138D /* HolyCustomAnimatedContainerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HolyCustomAnimatedContainerController.swift; sourceTree = "<group>"; };
 		B2ECF9AF269DF55F0029138D /* HolyRawRepresentableControllerMaker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HolyRawRepresentableControllerMaker.swift; sourceTree = "<group>"; };
+		B2EFA99126A03FA1007AC22A /* PrivateAnimationTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivateAnimationTransition.swift; sourceTree = "<group>"; };
+		B2EFA99326A03FDF007AC22A /* PrivateTransitionContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivateTransitionContext.swift; sourceTree = "<group>"; };
+		B2EFA99626A06FEA007AC22A /* HolyOnboardingCustomStackProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HolyOnboardingCustomStackProtocol.swift; sourceTree = "<group>"; };
+		B2EFA99826A07215007AC22A /* HolyDefaultNavigationStackController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HolyDefaultNavigationStackController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,19 +116,30 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B2B911C0269ED7B600A6D9E0 /* HolyOnboarding.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B20EDD8026A1786B00343605 /* DefaultNavigationContainer */ = {
+			isa = PBXGroup;
+			children = (
+				B2EFA99826A07215007AC22A /* HolyDefaultNavigationStackController.swift */,
+			);
+			path = DefaultNavigationContainer;
+			sourceTree = "<group>";
+		};
 		B289EC07269DF0F600650B7A = {
 			isa = PBXGroup;
 			children = (
+				B2EC9B88269E04E100231B2C /* HolyOnboarding.podspec */,
 				B289EC13269DF0F600650B7A /* HolyOnboarding */,
 				B289EC1E269DF0F600650B7A /* HolyOnboardingTests */,
 				B289EC30269DF25C00650B7A /* HolyOnboardingExamples */,
 				B289EC12269DF0F600650B7A /* Products */,
+				B2B911BF269ED7B600A6D9E0 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -106,11 +158,9 @@
 			children = (
 				B289EC14269DF0F600650B7A /* HolyOnboarding.h */,
 				B289EC15269DF0F600650B7A /* Info.plist */,
-				B2ECF9A9269DF5410029138D /* HolyBaseOnboardingControllerProtocol.swift */,
-				B2ECF9AB269DF54F0029138D /* HolyContainerControllerProtocol.swift */,
-				B2ECF9AD269DF5580029138D /* HolyDefaultContainerController.swift */,
-				B2ECF9AF269DF55F0029138D /* HolyRawRepresentableControllerMaker.swift */,
-				B2ECF9A7269DF51C0029138D /* HolyOnboarding.swift */,
+				B2CE61A4269EB8EE00E04C00 /* Interfaces */,
+				B20EDD8026A1786B00343605 /* DefaultNavigationContainer */,
+				B2EFA99526A044CB007AC22A /* CustomAnimatedContainer */,
 			);
 			path = HolyOnboarding;
 			sourceTree = "<group>";
@@ -130,12 +180,45 @@
 				B289EC31269DF25C00650B7A /* AppDelegate.swift */,
 				B289EC33269DF25C00650B7A /* SceneDelegate.swift */,
 				B289EC35269DF25C00650B7A /* ViewController.swift */,
+				B2CE61A9269EC25100E04C00 /* FirstExampleOnboardigScreen.swift */,
+				B2CE61AD269EC37100E04C00 /* SecondExampleOnboardingScreen.swift */,
+				B2B911C5269F10FF00A6D9E0 /* ThirdExampleOnboardingScreen.swift */,
+				B20EDD8126A1A08400343605 /* ExampleIAPController.swift */,
+				B2CE61A7269EBA5F00E04C00 /* ExampleOnboardingScreens.swift */,
 				B289EC37269DF25C00650B7A /* Main.storyboard */,
 				B289EC3A269DF25D00650B7A /* Assets.xcassets */,
 				B289EC3C269DF25D00650B7A /* LaunchScreen.storyboard */,
 				B289EC3F269DF25D00650B7A /* Info.plist */,
 			);
 			path = HolyOnboardingExamples;
+			sourceTree = "<group>";
+		};
+		B2B911BF269ED7B600A6D9E0 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B2CE61A4269EB8EE00E04C00 /* Interfaces */ = {
+			isa = PBXGroup;
+			children = (
+				B2ECF9AF269DF55F0029138D /* HolyRawRepresentableControllerMaker.swift */,
+				B2ECF9A9269DF5410029138D /* HolyOnboardingItem.swift */,
+				B2ECF9AB269DF54F0029138D /* HolyOnboardingFlowProtocol.swift */,
+				B2EFA99626A06FEA007AC22A /* HolyOnboardingCustomStackProtocol.swift */,
+			);
+			path = Interfaces;
+			sourceTree = "<group>";
+		};
+		B2EFA99526A044CB007AC22A /* CustomAnimatedContainer */ = {
+			isa = PBXGroup;
+			children = (
+				B2ECF9AD269DF5580029138D /* HolyCustomAnimatedContainerController.swift */,
+				B2EFA99126A03FA1007AC22A /* PrivateAnimationTransition.swift */,
+				B2EFA99326A03FDF007AC22A /* PrivateTransitionContext.swift */,
+			);
+			path = CustomAnimatedContainer;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -195,10 +278,12 @@
 				B289EC2B269DF25C00650B7A /* Sources */,
 				B289EC2C269DF25C00650B7A /* Frameworks */,
 				B289EC2D269DF25C00650B7A /* Resources */,
+				B2B911C4269ED7B600A6D9E0 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				B2B911C3269ED7B600A6D9E0 /* PBXTargetDependency */,
 			);
 			name = HolyOnboardingExamples;
 			productName = HolyOnboardingExamples;
@@ -266,6 +351,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B289EC3E269DF25D00650B7A /* LaunchScreen.storyboard in Resources */,
+				B2EC9B89269E04E100231B2C /* HolyOnboarding.podspec in Resources */,
 				B289EC3B269DF25D00650B7A /* Assets.xcassets in Resources */,
 				B289EC39269DF25C00650B7A /* Main.storyboard in Resources */,
 			);
@@ -278,11 +364,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B2ECF9AC269DF54F0029138D /* HolyContainerControllerProtocol.swift in Sources */,
+				B2EFA99926A07215007AC22A /* HolyDefaultNavigationStackController.swift in Sources */,
+				B2EFA99426A03FDF007AC22A /* PrivateTransitionContext.swift in Sources */,
+				B2ECF9AC269DF54F0029138D /* HolyOnboardingFlowProtocol.swift in Sources */,
 				B2ECF9B0269DF55F0029138D /* HolyRawRepresentableControllerMaker.swift in Sources */,
-				B2ECF9A8269DF51C0029138D /* HolyOnboarding.swift in Sources */,
-				B2ECF9AA269DF5410029138D /* HolyBaseOnboardingControllerProtocol.swift in Sources */,
-				B2ECF9AE269DF5580029138D /* HolyDefaultContainerController.swift in Sources */,
+				B2ECF9AA269DF5410029138D /* HolyOnboardingItem.swift in Sources */,
+				B2EFA99226A03FA1007AC22A /* PrivateAnimationTransition.swift in Sources */,
+				B2EFA99726A06FEA007AC22A /* HolyOnboardingCustomStackProtocol.swift in Sources */,
+				B2ECF9AE269DF5580029138D /* HolyCustomAnimatedContainerController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -301,6 +390,11 @@
 				B289EC36269DF25C00650B7A /* ViewController.swift in Sources */,
 				B289EC32269DF25C00650B7A /* AppDelegate.swift in Sources */,
 				B289EC34269DF25C00650B7A /* SceneDelegate.swift in Sources */,
+				B2B911C6269F10FF00A6D9E0 /* ThirdExampleOnboardingScreen.swift in Sources */,
+				B2CE61AE269EC37100E04C00 /* SecondExampleOnboardingScreen.swift in Sources */,
+				B2CE61A8269EBA5F00E04C00 /* ExampleOnboardingScreens.swift in Sources */,
+				B2CE61AA269EC25100E04C00 /* FirstExampleOnboardigScreen.swift in Sources */,
+				B20EDD8226A1A08400343605 /* ExampleIAPController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -311,6 +405,11 @@
 			isa = PBXTargetDependency;
 			target = B289EC10269DF0F600650B7A /* HolyOnboarding */;
 			targetProxy = B289EC1C269DF0F600650B7A /* PBXContainerItemProxy */;
+		};
+		B2B911C3269ED7B600A6D9E0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B289EC10269DF0F600650B7A /* HolyOnboarding */;
+			targetProxy = B2B911C2269ED7B600A6D9E0 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
