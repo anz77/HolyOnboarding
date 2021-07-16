@@ -10,10 +10,10 @@ import UIKit
 open class PrivateAnimationTransition: NSObject, UIViewControllerAnimatedTransitioning {
     
     let kChildViewPadding: CGFloat = 0.0//16.0
-    let kDamping: CGFloat = 1.0//0.75
-    let kInitialSpringVelocity: CGFloat = 0.0//0.5
+    let kDamping: CGFloat = 0.8//0.75
+    let kInitialSpringVelocity: CGFloat = 0.0//0.5//0.5
     
-    public func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval { return 1.0 }
+    public func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval { return 0.7 }
     
     public func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
         guard let toViewController = transitionContext.viewController(forKey: .to), let fromViewController = transitionContext.viewController(forKey: .from) else {

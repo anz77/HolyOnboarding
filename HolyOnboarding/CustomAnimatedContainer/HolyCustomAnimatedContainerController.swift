@@ -9,6 +9,31 @@ import UIKit
 
 open class HolyCustomAnimatedContainerController<T: HolyRawRepresentableControllerMaker>: UIViewController, HolyOnboardingCustomStackProtocol {
     
+    lazy var container: UIView = UIView()
+    open var currentIndex: Int = 0
+    open var pageControl: UIPageControl?
+
+    // HolyOnboardingNavigationStackProtocol
+    public var showIDFA: (()->())?
+    public var finishOnboarding: (()->())?
+    public var makeIAPController: (() -> UIViewController)?
+    
+    // HolyOnboardingAnalyticsProtocol
+    weak public var analyticsHandler: OnboardingAnalyticsHandler?
+    public func sendAnalyticEvent(key: String, values: [String : Any]) {
+        analyticsHandler?.sendAnalyticEvent(key: key, values: values)
+    }
+    public func sendAnalyticEvent(key: String, value: Any) {
+        analyticsHandler?.sendAnalyticEvent(key: key, value: value)
+    }
+        
+    // HolyOnboardingFlowProtocol
+    open var environmentValues: [String: Any] = [:]
+    open var onboardingFlow: [T] = []
+    
+    // HolyOnboardingCustomStackProtocol
+    open var selectedViewController: UIViewController?
+    open var controllers: [UIViewController] = []
     public func makeControllers() {
         controllers = (0..<onboardingFlow.count).compactMap { index in
             let controller = onboardingFlow[index].getController(coordinator: self)
@@ -16,30 +41,10 @@ open class HolyCustomAnimatedContainerController<T: HolyRawRepresentableControll
             controller.isFinal = (index == onboardingFlow.count - 1 + (makeIAPController == nil ? 0 : 1))
             return controller
         }
-        
         if let iapController = makeIAPController {
             controllers.append(iapController())
         }
     }
-    
-    public var finishOnboarding: (()->())?
-    
-    public var makeIAPController: (() -> UIViewController)?
-    
-    lazy var container: UIView = UIView()
-    
-    open var pageControl: UIPageControl?
-    
-    weak public var analyticsHandler: OnboardingAnalyticsHandler?
-    
-    public var showIDFA: (()->())?
-        
-    open var currentIndex: Int = 0
-    open var selectedViewController: UIViewController?
-    open var environmentValues: [String: Any] = [:]
-    
-    open var onboardingFlow: [T] = []
-    open var controllers: [UIViewController] = []
     
     public init(onboardingFlow: [T] = []) {
         self.onboardingFlow = onboardingFlow
@@ -62,7 +67,7 @@ open class HolyCustomAnimatedContainerController<T: HolyRawRepresentableControll
     
     open override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        view.backgroundColor = .red
+        view.backgroundColor = .black
     }
     
     open func setupUI() {
@@ -81,6 +86,7 @@ open class HolyCustomAnimatedContainerController<T: HolyRawRepresentableControll
         }
     }
     
+    // HolyOnboardingNavigationProtocol
     public func goNext() {
         if !controllers.isEmpty && (currentIndex < controllers.count - 1) {
             currentIndex += 1
@@ -147,14 +153,6 @@ open class HolyCustomAnimatedContainerController<T: HolyRawRepresentableControll
         }
         controllers.append(controller)
         transition(fromViewController: controllers[currentIndex], toViewController: controller)
-    }
-    
-    public func sendAnalyticEvent(key: String, values: [String : Any]) {
-        analyticsHandler?.sendAnalyticEvent(key: key, values: values)
-    }
-    
-    public func sendAnalyticEvent(key: String, value: Any) {
-        analyticsHandler?.sendAnalyticEvent(key: key, value: value)
     }
     
 }

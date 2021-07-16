@@ -10,4 +10,5 @@ import UIKit
 public protocol HolyOnboardingCustomStackProtocol: HolyOnboardingNavigationStackProtocol {
     var controllers: [UIViewController] {get set}
     func makeControllers()
+    var selectedViewController: UIViewController? {get set}
 }

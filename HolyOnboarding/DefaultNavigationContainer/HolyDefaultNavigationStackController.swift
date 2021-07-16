@@ -10,12 +10,23 @@ import UIKit
 open class HolyDefaultNavigationStackController<T: HolyRawRepresentableControllerMaker>: UIViewController, HolyOnboardingNavigationStackProtocol {
     
     open var navigation = UINavigationController()
+    open var currentIndex = 0
     open var pageControl: UIPageControl?
+    
+    // HolyOnboardingFlowProtocol
     public var environmentValues: [String : Any] = [:]
     public var onboardingFlow: [T] = []
-    open var currentIndex = 0
+    
+    // HolyOnboardingAnalyticsProtocol
     weak public var analyticsHandler: OnboardingAnalyticsHandler?
-        
+    public func sendAnalyticEvent(key: String, values: [String : Any]) {
+        analyticsHandler?.sendAnalyticEvent(key: key, values: values)
+    }
+    public func sendAnalyticEvent(key: String, value: Any) {
+        analyticsHandler?.sendAnalyticEvent(key: key, value: value)
+    }
+    
+    // HolyOnboardingNavigationStackProtocol
     public var showIDFA: (()->())?
     public var makeIAPController: (()->UIViewController)?
     public var finishOnboarding: (()->())?
@@ -61,14 +72,19 @@ open class HolyDefaultNavigationStackController<T: HolyRawRepresentableControlle
         }
     }
     
+    // HolyOnboardingNavigationProtocol
     public func goNext() {
-        let index = currentIndex + 1
-        if let controller = controller(for: index) {
-            navigation.pushViewController(controller, animated: true)
-            currentIndex = index
-            pageControl?.currentPage = currentIndex
+        
+        if currentIndex < onboardingFlow.count - 1 {
+            let index = currentIndex + 1
+            if let controller = controller(for: index) {
+                navigation.pushViewController(controller, animated: true)
+                currentIndex = index
+                pageControl?.currentPage = currentIndex
+            }
         } else {
             if let iapController = makeIAPController {
+                let index = currentIndex + 1
                 navigation.pushViewController(iapController(), animated: true)
                 currentIndex = index
                 pageControl?.currentPage = currentIndex
@@ -77,23 +93,18 @@ open class HolyDefaultNavigationStackController<T: HolyRawRepresentableControlle
             }
         }
         print("i'm here, index = \(currentIndex)")
-
+        
     }
     
     public func goPrevious() {
-        let index = currentIndex - 1
-        navigation.popViewController(animated: true)
-        currentIndex = index
-        pageControl?.currentPage = currentIndex
-        print("i'm here, index = \(currentIndex)")
-    }
-    
-    public func sendAnalyticEvent(key: String, values: [String : Any]) {
-        analyticsHandler?.sendAnalyticEvent(key: key, values: values)
-    }
-    
-    public func sendAnalyticEvent(key: String, value: Any) {
-        analyticsHandler?.sendAnalyticEvent(key: key, value: value)
+        if currentIndex > 0 {
+            let index = currentIndex - 1
+            navigation.popViewController(animated: true)
+            currentIndex = index
+            pageControl?.currentPage = currentIndex
+            print("i'm here, index = \(currentIndex)")
+        }
+        
     }
     
     public func configureNavigationController() {
@@ -120,9 +131,14 @@ open class HolyDefaultNavigationStackController<T: HolyRawRepresentableControlle
     
     public func start() {
         currentIndex = 0
-        guard let controller = controller(for: currentIndex) else { return }
-        navigation.pushViewController(controller, animated: true)
-        pageControl?.currentPage = currentIndex
+        if let controller = controller(for: currentIndex) {
+            navigation.pushViewController(controller, animated: true)
+            pageControl?.currentPage = currentIndex
+        } else {
+            if let controller = makeIAPController {
+                navigation.pushViewController(controller(), animated: true)
+            }
+        }
     }
     
     open func appendController(_ controller: UIViewController) {

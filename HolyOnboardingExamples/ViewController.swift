@@ -10,10 +10,18 @@ import HolyOnboarding
 
 class ViewController: UIViewController {
     
-    lazy var onboardingButton: UIButton = {
+    lazy var navControllerOnboarding: UIButton = {
         let button = UIButton(type: .system)
-        button.setTitle("SHOW ONBAORDING", for: .normal)
-        button.addTarget(self, action: #selector(show(_:)), for: .touchUpInside)
+        button.setTitle("SHOW WITH NAVIGATION CONTROLLER", for: .normal)
+        button.addTarget(self, action: #selector(showNavControllerOnboarding(_:)), for: .touchUpInside)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+    
+    lazy var customAnimationOnboarding: UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("SHOW WITH CUSTOM ANIMATION", for: .normal)
+        button.addTarget(self, action: #selector(showcustomAnimationOnboarding(_:)), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -29,21 +37,66 @@ class ViewController: UIViewController {
     }
     
     func setupUI() {
-        view.addSubview(onboardingButton)
+        view.addSubview(navControllerOnboarding)
         NSLayoutConstraint.activate([
-            onboardingButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            onboardingButton.heightAnchor.constraint(equalToConstant: 70),
-            onboardingButton.widthAnchor.constraint(equalToConstant: 250),
-            onboardingButton.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: 0)
+            navControllerOnboarding.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            navControllerOnboarding.heightAnchor.constraint(equalToConstant: 70),
+            navControllerOnboarding.widthAnchor.constraint(equalToConstant: view.bounds.width),
+            navControllerOnboarding.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: -100)
+        ])
+        
+        view.addSubview(customAnimationOnboarding)
+        NSLayoutConstraint.activate([
+            customAnimationOnboarding.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            customAnimationOnboarding.heightAnchor.constraint(equalToConstant: 70),
+            customAnimationOnboarding.widthAnchor.constraint(equalToConstant: view.bounds.width),
+            customAnimationOnboarding.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: 100)
         ])
     }
     
-    @objc func show(_ sender: UIControl) {
-        showOnboarding()
+    @objc func showNavControllerOnboarding(_ sender: UIControl) {
+        showNawOnboarding()
     }
     
-    func showOnboarding() {
-        let onbaordingFlow: [ExampleOnboardingScreens] = [.three, .one, .two]
+    @objc func showcustomAnimationOnboarding(_ sender: UIControl) {
+        showCustomOnboarding()
+    }
+    
+    func showNawOnboarding() {
+        
+        let onbaordingFlow: [ExampleOnboardingScreens] = [.three, .one, .two, .three, .one, .two, .three]
+        
+        let container = HolyDefaultNavigationStackController(onboardingFlow: onbaordingFlow)
+        //let container = HolyCustomAnimatedContainerController(onboardingFlow: onbaordingFlow)
+        
+        let pageControl = UIPageControl()
+        container.pageControl = pageControl
+        
+        container.makeIAPController = { [weak container] in
+
+            let iapController = ExampleIAPController()
+            iapController.finished = { [weak container] in
+                container?.finishOnboarding?()
+            }
+            iapController.goPrevious = { [weak container] in
+                container?.goPrevious()
+            }
+            return iapController
+        }
+        
+        container.finishOnboarding = { [weak container] in
+            container?.dismiss(animated: true, completion: {})
+        }
+ 
+        container.modalPresentationStyle = .automatic
+        container.modalTransitionStyle = .coverVertical
+        present(container, animated: true) {}
+    }
+    
+    
+    func showCustomOnboarding() {
+        
+        let onbaordingFlow: [ExampleOnboardingScreens] = [.three, .one, .two, .three, .one, .two, .three]
         
         //let container = HolyDefaultNavigationStackController(onboardingFlow: onbaordingFlow)
         let container = HolyCustomAnimatedContainerController(onboardingFlow: onbaordingFlow)
@@ -71,6 +124,7 @@ class ViewController: UIViewController {
         container.modalTransitionStyle = .coverVertical
         present(container, animated: true) {}
     }
+
 
 
 }
