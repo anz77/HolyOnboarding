@@ -10,6 +10,19 @@ import HolyOnboarding
 
 class FirstExampleOnboardigScreen: UIViewController, HolyOnboardingItem {
     
+    var color: UIColor
+    var titleString: String
+    
+    init(color: UIColor, titleString: String) {
+        self.color = color
+        self.titleString = titleString
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     var isInitial: Bool = false
     var isFinal: Bool = false
     
@@ -31,13 +44,30 @@ class FirstExampleOnboardigScreen: UIViewController, HolyOnboardingItem {
         return button
     }()
     
+    
+    lazy var titleLabel: UILabel = {
+        let label = UILabel()
+        label.text = titleString
+        label.textColor = .black
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .green
+        view.backgroundColor = color
         setupUI()
     }
     
     func setupUI() {
+        
+        view.addSubview(titleLabel)
+        NSLayoutConstraint.activate([
+            titleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            titleLabel.heightAnchor.constraint(equalToConstant: 30),
+            titleLabel.widthAnchor.constraint(equalToConstant: 70),
+            titleLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: -200)
+        ])
         
         if !isInitial {
             view.addSubview(leftButton)

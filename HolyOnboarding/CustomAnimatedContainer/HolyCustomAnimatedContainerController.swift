@@ -7,7 +7,7 @@
 
 import UIKit
 
-open class HolyCustomAnimatedContainerController<T: HolyRawRepresentableControllerMaker>: UIViewController, HolyOnboardingCustomStackProtocol {
+open class HolyCustomAnimatedContainerController<T, U: HolyOnboardingFabric>: UIViewController, HolyOnboardingNavigationStackProtocol where U.Model == T {
     
     lazy var container: UIView = UIView()
     open var currentIndex: Int = 0
@@ -20,23 +20,19 @@ open class HolyCustomAnimatedContainerController<T: HolyRawRepresentableControll
     
     // HolyOnboardingAnalyticsProtocol
     weak public var analyticsHandler: OnboardingAnalyticsHandler?
-    public func sendAnalyticEvent(key: String, values: [String : Any]) {
-        analyticsHandler?.sendAnalyticEvent(key: key, values: values)
-    }
-    public func sendAnalyticEvent(key: String, value: Any) {
-        analyticsHandler?.sendAnalyticEvent(key: key, value: value)
-    }
         
     // HolyOnboardingFlowProtocol
-    open var environmentValues: [String: Any] = [:]
     open var onboardingFlow: [T] = []
+    open var fabric: U
+    open var environmentValues: [String: Any] = [:]
     
     // HolyOnboardingCustomStackProtocol
     open var selectedViewController: UIViewController?
     open var controllers: [UIViewController] = []
+    
     public func makeControllers() {
-        controllers = (0..<onboardingFlow.count).compactMap { index in
-            let controller = onboardingFlow[index].getController(coordinator: self)
+        controllers = (0..<onboardingFlow.count).compactMap { [weak self] index in
+            let controller = fabric.makeControllerFromModel(onboardingFlow[index], coordinator: self)
             controller.isInitial = (index == 0)
             controller.isFinal = (index == onboardingFlow.count - 1 + (makeIAPController == nil ? 0 : 1))
             return controller
@@ -46,22 +42,24 @@ open class HolyCustomAnimatedContainerController<T: HolyRawRepresentableControll
         }
     }
     
-    public init(onboardingFlow: [T] = []) {
+    public init(onboardingFlow: [T], fabric: U) {
         self.onboardingFlow = onboardingFlow
+        self.fabric = fabric
         super.init(nibName: nil, bundle: nil)
     }
-    
-    public required init?(coder: NSCoder) {
+
+    required public init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
     open override func viewDidLoad() {
         super.viewDidLoad()
-        makeControllers()
-        currentIndex = 0
         setupUI()
-        if let firstController = controllers.first {
-            setupController(controller: firstController)
+        currentIndex = 0
+        makeControllers()
+        print(controllers.count)
+        if let firstController = self.controllers.first {
+            self.setupController(controller: firstController)
         }
     }
     
@@ -96,7 +94,6 @@ open class HolyCustomAnimatedContainerController<T: HolyRawRepresentableControll
         } else {
             finishOnboarding?()
         }
-        print("i'm here, index = \(currentIndex)")
     }
     
     public func goPrevious() {
@@ -106,7 +103,6 @@ open class HolyCustomAnimatedContainerController<T: HolyRawRepresentableControll
             selectedViewController = controllers[currentIndex]
             pageControl?.currentPage = currentIndex
         }
-        print("i'm here, index = \(currentIndex)")
     }
  
     open func setupController(controller: UIViewController) {

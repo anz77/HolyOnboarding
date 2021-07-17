@@ -16,9 +16,11 @@ public protocol HolyOnboardingContainerProtocol: AnyObject, HolyOnboardingNaviga
 }
 
 public protocol HolyOnboardingFlowProtocol {
-    associatedtype T: HolyRawRepresentableControllerMaker
-    var environmentValues: [String: Any] {get set}
+    associatedtype T: HolyOnboardingModel
+    associatedtype U: HolyOnboardingFabric
     var onboardingFlow: [T] {get set}
+    var fabric: U {get set}
+    var environmentValues: [String: Any] {get set}
 }
 
 public protocol HolyOnboardingNavigationProtocol {
@@ -28,11 +30,10 @@ public protocol HolyOnboardingNavigationProtocol {
 
 public protocol HolyOnboardingAnalyticsProtocol {
     var analyticsHandler: OnboardingAnalyticsHandler? {get set}
-    func sendAnalyticEvent(key: String, values: [String: Any])
-    func sendAnalyticEvent(key: String, value: Any)
 }
 
 public protocol OnboardingAnalyticsHandler: AnyObject {
     func sendAnalyticEvent(key: String, values: [String: Any])
     func sendAnalyticEvent(key: String, value: Any)
 }
+

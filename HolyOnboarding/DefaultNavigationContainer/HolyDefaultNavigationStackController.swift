@@ -7,8 +7,8 @@
 
 import UIKit
 
-open class HolyDefaultNavigationStackController<T: HolyRawRepresentableControllerMaker>: UIViewController, HolyOnboardingNavigationStackProtocol {
-    
+open class HolyDefaultNavigationStackController<T, U: HolyOnboardingFabric>: UIViewController, HolyOnboardingNavigationStackProtocol where U.Model == T  {
+            
     open var navigation = UINavigationController()
     open var currentIndex = 0
     open var pageControl: UIPageControl?
@@ -16,24 +16,21 @@ open class HolyDefaultNavigationStackController<T: HolyRawRepresentableControlle
     // HolyOnboardingFlowProtocol
     public var environmentValues: [String : Any] = [:]
     public var onboardingFlow: [T] = []
+    public var fabric: U
     
     // HolyOnboardingAnalyticsProtocol
     weak public var analyticsHandler: OnboardingAnalyticsHandler?
-    public func sendAnalyticEvent(key: String, values: [String : Any]) {
-        analyticsHandler?.sendAnalyticEvent(key: key, values: values)
-    }
-    public func sendAnalyticEvent(key: String, value: Any) {
-        analyticsHandler?.sendAnalyticEvent(key: key, value: value)
-    }
     
     // HolyOnboardingNavigationStackProtocol
     public var showIDFA: (()->())?
     public var makeIAPController: (()->UIViewController)?
     public var finishOnboarding: (()->())?
     
-    public init(onboardingFlow: [T] = []) {
+    public init(onboardingFlow: [T], fabric: U) {
         self.onboardingFlow = onboardingFlow
+        self.fabric = fabric
         super.init(nibName: nil, bundle: nil)
+        
     }
     
     public required init?(coder: NSCoder) {
@@ -74,7 +71,6 @@ open class HolyDefaultNavigationStackController<T: HolyRawRepresentableControlle
     
     // HolyOnboardingNavigationProtocol
     public func goNext() {
-        
         if currentIndex < onboardingFlow.count - 1 {
             let index = currentIndex + 1
             if let controller = controller(for: index) {
@@ -92,8 +88,6 @@ open class HolyDefaultNavigationStackController<T: HolyRawRepresentableControlle
                 finishOnboarding?()
             }
         }
-        print("i'm here, index = \(currentIndex)")
-        
     }
     
     public func goPrevious() {
@@ -102,9 +96,7 @@ open class HolyDefaultNavigationStackController<T: HolyRawRepresentableControlle
             navigation.popViewController(animated: true)
             currentIndex = index
             pageControl?.currentPage = currentIndex
-            print("i'm here, index = \(currentIndex)")
         }
-        
     }
     
     public func configureNavigationController() {
@@ -123,7 +115,7 @@ open class HolyDefaultNavigationStackController<T: HolyRawRepresentableControlle
     
     public func controller(for index: Int) -> HolyOnboardingItem? {
         guard index >= 0 && index < onboardingFlow.count else {return nil}
-        let controller = onboardingFlow[index].getController(coordinator: self)
+        let controller = fabric.makeControllerFromModel(onboardingFlow[index], coordinator: self)
         controller.isInitial = (index == 0)
         controller.isFinal = (index == onboardingFlow.count - 1 + (makeIAPController == nil ? 0 : 1))
         return controller

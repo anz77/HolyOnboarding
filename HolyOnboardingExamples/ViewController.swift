@@ -64,65 +64,69 @@ class ViewController: UIViewController {
     
     func showNawOnboarding() {
         
-        let onbaordingFlow: [ExampleOnboardingScreens] = [.three, .one, .two, .three, .one, .two, .three]
+        let source = ExampleRemoteSource()
         
-        let container = HolyDefaultNavigationStackController(onboardingFlow: onbaordingFlow)
-        //let container = HolyCustomAnimatedContainerController(onboardingFlow: onbaordingFlow)
-        
-        let pageControl = UIPageControl()
-        container.pageControl = pageControl
-        
-        container.makeIAPController = { [weak container] in
+        source.getModelsFromRemoteConfig(key: "") { [weak self] (models: [ExampleOnboardingScreen]) in
+            
+            let container = HolyDefaultNavigationStackController<ExampleOnboardingScreen, ExampleOnboardingFabric>(onboardingFlow: models, fabric: ExampleOnboardingFabric())
+            let pageControl = UIPageControl()
+            container.pageControl = pageControl
+            
+            container.makeIAPController = { [weak container] in
 
-            let iapController = ExampleIAPController()
-            iapController.finished = { [weak container] in
-                container?.finishOnboarding?()
+                let iapController = ExampleIAPController()
+                iapController.finished = { [weak container] in
+                    container?.finishOnboarding?()
+                }
+                iapController.goPrevious = { [weak container] in
+                    container?.goPrevious()
+                }
+                return iapController
             }
-            iapController.goPrevious = { [weak container] in
-                container?.goPrevious()
+            
+            container.finishOnboarding = { [weak container] in
+                container?.dismiss(animated: true, completion: {})
             }
-            return iapController
+            
+            container.modalPresentationStyle = .automatic
+            container.modalTransitionStyle = .coverVertical
+            self?.present(container, animated: true) {}
         }
-        
-        container.finishOnboarding = { [weak container] in
-            container?.dismiss(animated: true, completion: {})
-        }
- 
-        container.modalPresentationStyle = .automatic
-        container.modalTransitionStyle = .coverVertical
-        present(container, animated: true) {}
     }
     
     
     func showCustomOnboarding() {
         
-        let onbaordingFlow: [ExampleOnboardingScreens] = [.three, .one, .two, .three, .one, .two, .three]
         
-        //let container = HolyDefaultNavigationStackController(onboardingFlow: onbaordingFlow)
-        let container = HolyCustomAnimatedContainerController(onboardingFlow: onbaordingFlow)
+        let source = ExampleRemoteSource()
         
-        let pageControl = UIPageControl()
-        container.pageControl = pageControl
-        
-        container.makeIAPController = { [weak container] in
+        source.getModelsFromRemoteConfig(key: "") { [weak self] (models: [ExampleOnboardingScreen]) in
+            
+            let container = HolyCustomAnimatedContainerController<ExampleOnboardingScreen, ExampleOnboardingFabric>(onboardingFlow: models, fabric: ExampleOnboardingFabric())
+            let pageControl = UIPageControl()
+            container.pageControl = pageControl
+            
+            container.makeIAPController = { [weak container] in
 
-            let iapController = ExampleIAPController()
-            iapController.finished = { [weak container] in
-                container?.finishOnboarding?()
+                let iapController = ExampleIAPController()
+                iapController.finished = { [weak container] in
+                    container?.finishOnboarding?()
+                }
+                iapController.goPrevious = { [weak container] in
+                    container?.goPrevious()
+                }
+                return iapController
             }
-            iapController.goPrevious = { [weak container] in
-                container?.goPrevious()
+            
+            container.finishOnboarding = { [weak container] in
+                container?.dismiss(animated: true, completion: {})
             }
-            return iapController
+            
+            container.modalPresentationStyle = .automatic
+            container.modalTransitionStyle = .coverVertical
+            self?.present(container, animated: true) {}
         }
         
-        container.finishOnboarding = { [weak container] in
-            container?.dismiss(animated: true, completion: {})
-        }
- 
-        container.modalPresentationStyle = .automatic
-        container.modalTransitionStyle = .coverVertical
-        present(container, animated: true) {}
     }
 
 
