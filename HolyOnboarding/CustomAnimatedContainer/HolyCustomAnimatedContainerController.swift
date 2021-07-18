@@ -57,7 +57,6 @@ open class HolyCustomAnimatedContainerController<T, U: HolyOnboardingFabric>: UI
         setupUI()
         currentIndex = 0
         makeControllers()
-        print(controllers.count)
         if let firstController = self.controllers.first {
             self.setupController(controller: firstController)
         }

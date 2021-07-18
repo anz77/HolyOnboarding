@@ -9,5 +9,5 @@ import Foundation
 
 public protocol HolyRemoteSource: AnyObject {
     associatedtype Model: HolyOnboardingModel
-    func getModelsFromRemoteConfig(key: String, _ completion: @escaping ([Model])->())
+    func getModelsFromRemoteConfig(key: String, completion: @escaping ([Model])->())
 }

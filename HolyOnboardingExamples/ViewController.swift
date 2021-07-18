@@ -69,11 +69,11 @@ class ViewController: UIViewController {
         source.getModelsFromRemoteConfig(key: "") { [weak self] (models: [ExampleOnboardingScreen]) in
             
             let container = HolyDefaultNavigationStackController<ExampleOnboardingScreen, ExampleOnboardingFabric>(onboardingFlow: models, fabric: ExampleOnboardingFabric())
+            
             let pageControl = UIPageControl()
             container.pageControl = pageControl
             
             container.makeIAPController = { [weak container] in
-
                 let iapController = ExampleIAPController()
                 iapController.finished = { [weak container] in
                     container?.finishOnboarding?()
@@ -84,10 +84,12 @@ class ViewController: UIViewController {
                 return iapController
             }
             
+            container.showIDFA = {}
+
             container.finishOnboarding = { [weak container] in
                 container?.dismiss(animated: true, completion: {})
             }
-            
+                        
             container.modalPresentationStyle = .automatic
             container.modalTransitionStyle = .coverVertical
             self?.present(container, animated: true) {}
@@ -97,12 +99,12 @@ class ViewController: UIViewController {
     
     func showCustomOnboarding() {
         
-        
         let source = ExampleRemoteSource()
         
         source.getModelsFromRemoteConfig(key: "") { [weak self] (models: [ExampleOnboardingScreen]) in
             
             let container = HolyCustomAnimatedContainerController<ExampleOnboardingScreen, ExampleOnboardingFabric>(onboardingFlow: models, fabric: ExampleOnboardingFabric())
+            
             let pageControl = UIPageControl()
             container.pageControl = pageControl
             
@@ -118,6 +120,8 @@ class ViewController: UIViewController {
                 return iapController
             }
             
+            container.showIDFA = {}
+            
             container.finishOnboarding = { [weak container] in
                 container?.dismiss(animated: true, completion: {})
             }
@@ -126,10 +130,7 @@ class ViewController: UIViewController {
             container.modalTransitionStyle = .coverVertical
             self?.present(container, animated: true) {}
         }
-        
     }
-
-
 
 }
 
