@@ -16,7 +16,7 @@ Pod::Spec.new do |spec|
   #
 
   spec.name         = "HolyOnboarding"
-  spec.version      = "0.0.1"
+  spec.version      = "1.0.0"
   spec.summary      = "Producing HolyOnboarding"
 
   # This description is used to generate tags and improve search results.
@@ -24,9 +24,7 @@ Pod::Spec.new do |spec|
   #   * Try to keep it short, snappy and to the point.
   #   * Write the description between the DESC delimiters below.
   #   * Finally, don't worry about the indent, CocoaPods strips it!
-  spec.description  = <<-DESC
-                      There is my description just here!!!
-                   DESC
+  spec.description  = "Cocoapod for presenting onboarding flow in your iOS application"
 
   spec.homepage     = "https://github.com/anz77/HolyOnboarding"
   # spec.screenshots  = "www.example.com/screenshots_1.gif", "www.example.com/screenshots_2.gif"
