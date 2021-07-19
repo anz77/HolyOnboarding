@@ -26,7 +26,7 @@ Pod::Spec.new do |spec|
 
   spec.swift_version  = "5.0"
 
-  spec.source         = { :git => "http://anz77/HolyOnboarding.git", :tag => "#{spec.version}" }
+  spec.source         = { :git => "https://github.com/anz77/HolyOnboarding.git", :tag => "#{spec.version}" }
 
   spec.source_files   = "HolyOnboarding", "HolyOnboarding/**/*.{h,m,swift}"
 
